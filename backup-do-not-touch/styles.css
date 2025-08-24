@@ -4,7 +4,7 @@ html, html, body {
     padding: 0;
 }
 
-/* Base page styles - BADASS TRUCKER THEME */
+/* Base page styles -  TRUCKER THEME */
 body {
     font-family: 'Arial Black', 'Impact', sans-serif;
     color: #ffffff;
@@ -153,7 +153,7 @@ body::before {
     transform: translateY(-1px);
 }
 
-/* Dropdown Menu Styles - STEEL GRILL BADASS */
+/* Dropdown Menu Styles - STEEL GRILL  */
 .dropdown-menu {
     position: absolute;
     top: 100%;
@@ -459,7 +459,7 @@ body::before {
             inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
 
-    /* Responsive Navigation - MOBILE BADASS */
+    /* Responsive Navigation - MOBILE  */
     @media (max-width: 768px) {
         .nav-container {
             flex-direction: column;
