@@ -14,21 +14,61 @@
   <!-- Navigation -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
-      <div class="nav-logo">
-        <h2>Diamond Trucking School</h2>
-      </div>
-      <ul class="nav-menu">
-        <li><a href="#home" data-section="home">Home</a></li>
-        <li><a href="#about" data-section="about">About</a></li>
-        <li><a href="#programs" data-section="programs">Programs</a></li>
-        <li><a href="#services" data-section="services">Services</a></li>
-        <li><a href="#jobs" data-section="jobs">Jobs</a></li>
-        <li><a href="#contact" data-section="contact">Contact</a></li>
+      <div class="nav-left">
+        <div class="nav-logo">
+          <i class="fas fa-truck"></i>
+          <h2>
+            <span class="logo-diamond">Diamond</span>
+            <span class="logo-trucking">Trucking</span>
+            <span class="logo-school">School</span>
+          </h2>
+        </div>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#home" data-section="home">Home</a></li>
+          <li><a href="#about" data-section="about">About</a></li>
+          <li><a href="#programs" data-section="programs">Programs</a></li>
+          <li><a href="#services" data-section="services">Services</a></li>
+          <li><a href="#jobs" data-section="jobs">Jobs</a></li>
+          <li><a href="#contact" data-section="contact">Contact</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-trigger">More <i class="fas fa-caret-down"></i></a>
+            <ul class="dropdown-content">
+              <li><a href="#about">Why Choose Us</a></li>
+            <li><a href="#programs">Training Programs</a></li>
+            <li><a href="#jobs">Career Center</a></li>
+            <li><a href="#contact">Get Quote</a></li>
+          </ul>
+        </li>
       </ul>
-      <div class="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
+      </div>
+      <div class="nav-actions">
+        <div class="search-container">
+          <input type="text" id="searchInput" placeholder="Search..." class="search-input">
+          <button class="search-btn" id="searchBtn" title="Search">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-content">
+        <a href="#home" data-section="home">Home</a>
+        <a href="#about" data-section="about">About</a>
+        <a href="#programs" data-section="programs">Programs</a>
+        <a href="#services" data-section="services">Services</a>
+        <a href="#jobs" data-section="jobs">Jobs</a>
+        <a href="#contact" data-section="contact">Contact</a>
+        <div class="mobile-search">
+          <input type="text" placeholder="Search..." class="mobile-search-input">
+          <button class="mobile-search-btn"><i class="fas fa-search"></i></button>
+        </div>
       </div>
     </div>
   </nav>

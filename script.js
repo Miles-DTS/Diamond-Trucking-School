@@ -38,7 +38,15 @@ document.addEventListener('DOMContentLoaded', function() {
         navLinks.forEach((link, index) => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-                scrollToSection(index);
+                const section = link.getAttribute('data-section');
+                if (section) {
+                    const sectionIndex = Array.from(sections).findIndex(s => s.id === section);
+                    if (sectionIndex !== -1) {
+                        scrollToSection(sectionIndex);
+                    }
+                }
+                // Close mobile menu if open
+                closeMobileMenu();
             });
         });
         
@@ -50,6 +58,9 @@ document.addEventListener('DOMContentLoaded', function() {
             hamburger.addEventListener('click', toggleMobileMenu);
         }
         
+        // Search functionality
+        setupSearchFeature();
+        
         // Contact form submission
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
@@ -58,6 +69,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Intersection Observer for scroll animations
         setupIntersectionObserver();
+        
+        // Mobile menu links
+        setupMobileMenuLinks();
     }
     
     function handleScroll() {
@@ -132,8 +146,167 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     function toggleMobileMenu() {
-        navMenu.classList.toggle('active');
+        const mobileMenu = document.getElementById('mobileMenu');
         hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+    }
+    
+    function closeMobileMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+    }
+    
+    function setupMobileMenuLinks() {
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-content a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const section = link.getAttribute('data-section');
+                if (section) {
+                    const sectionIndex = Array.from(sections).findIndex(s => s.id === section);
+                    if (sectionIndex !== -1) {
+                        scrollToSection(sectionIndex);
+                        closeMobileMenu();
+                    }
+                }
+            });
+        });
+    }
+    
+    function setupSearchFeature() {
+        const searchBtn = document.getElementById('searchBtn');
+        const searchInput = document.getElementById('searchInput');
+        const mobileSearchBtn = document.querySelector('.mobile-search-btn');
+        const mobileSearchInput = document.querySelector('.mobile-search-input');
+        
+        // Desktop search
+        if (searchBtn && searchInput) {
+            searchBtn.addEventListener('click', () => performSearch(searchInput.value));
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch(searchInput.value);
+                }
+            });
+        }
+        
+        // Mobile search
+        if (mobileSearchBtn && mobileSearchInput) {
+            mobileSearchBtn.addEventListener('click', () => performSearch(mobileSearchInput.value));
+            mobileSearchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch(mobileSearchInput.value);
+                }
+            });
+        }
+    }
+    
+    function performSearch(query) {
+        if (!query.trim()) {
+            showSearchMessage('Please enter a search term', 'info');
+            return;
+        }
+        
+        // Search through page content
+        const searchResults = searchPageContent(query.toLowerCase());
+        
+        if (searchResults.length > 0) {
+            // Scroll to first result
+            const firstResult = searchResults[0];
+            scrollToSection(firstResult.sectionIndex);
+            
+            // Highlight search terms
+            highlightSearchTerms(query);
+            
+            showSearchMessage(`Found "${query}" in ${searchResults.length} section(s)`, 'success');
+        } else {
+            showSearchMessage(`No results found for "${query}"`, 'error');
+        }
+        
+        // Clear search inputs
+        const searchInput = document.getElementById('searchInput');
+        const mobileSearchInput = document.querySelector('.mobile-search-input');
+        if (searchInput) searchInput.value = '';
+        if (mobileSearchInput) mobileSearchInput.value = '';
+    }
+    
+    function searchPageContent(query) {
+        const results = [];
+        const searchTerms = query.split(' ').filter(term => term.length > 2);
+        
+        sections.forEach((section, index) => {
+            const content = section.textContent.toLowerCase();
+            const hasMatch = searchTerms.some(term => content.includes(term));
+            
+            if (hasMatch) {
+                results.push({
+                    sectionIndex: index,
+                    sectionId: section.id,
+                    sectionTitle: section.querySelector('h1, h2, h3')?.textContent || 'Section'
+                });
+            }
+        });
+        
+        return results;
+    }
+    
+    function highlightSearchTerms(query) {
+        // Remove existing highlights
+        document.querySelectorAll('.search-highlight').forEach(el => {
+            el.outerHTML = el.innerHTML;
+        });
+        
+        // Add new highlights (simplified version for demo)
+        setTimeout(() => {
+            const walker = document.createTreeWalker(
+                document.body,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+            );
+            
+            const textNodes = [];
+            let node;
+            
+            while (node = walker.nextNode()) {
+                textNodes.push(node);
+            }
+            
+            textNodes.forEach(textNode => {
+                const parent = textNode.parentNode;
+                if (parent.tagName !== 'SCRIPT' && parent.tagName !== 'STYLE') {
+                    const text = textNode.textContent;
+                    const regex = new RegExp(`(${query})`, 'gi');
+                    
+                    if (regex.test(text)) {
+                        const highlightedText = text.replace(regex, '<span class="search-highlight">$1</span>');
+                        const wrapper = document.createElement('div');
+                        wrapper.innerHTML = highlightedText;
+                        
+                        while (wrapper.firstChild) {
+                            parent.insertBefore(wrapper.firstChild, textNode);
+                        }
+                        parent.removeChild(textNode);
+                    }
+                }
+            });
+        }, 100);
+        
+        // Remove highlights after 5 seconds
+        setTimeout(() => {
+            document.querySelectorAll('.search-highlight').forEach(el => {
+                el.outerHTML = el.innerHTML;
+            });
+        }, 5000);
+    }
+    
+    function showSearchMessage(message, type) {
+        const notification = createNotification(message, type);
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.remove();
+        }, 4000);
     }
     
     function handleFormSubmission(e) {
