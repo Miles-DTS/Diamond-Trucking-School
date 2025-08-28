@@ -1,0 +1,183 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #0a0a0a;
+    color: #fff;
+    background-image: url('Images/honeycomb-bg.png');
+    background-size: cover;
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+    /* Navigation Bar Styles */
+    .navbar {
+        width: 100%;
+        background: #111;
+        padding: 0;
+        margin: 0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        position: relative;
+        z-index: 10;
+    }
+
+    .nav-menu {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0 32px;
+        height: 56px;
+    }
+
+    .nav-menu > li {
+        position: relative;
+        margin-right: 32px;
+    }
+
+    .nav-menu > li:last-child {
+        margin-right: 0;
+    }
+
+    .nav-menu a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 8px 12px;
+        display: block;
+        transition: background 0.2s;
+        border-radius: 4px;
+    }
+
+    .nav-menu a:hover {
+        background: #007bff;
+        color: #fff;
+    }
+
+    .dropdown-content, .dropdown-subcontent {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        background: #222;
+        min-width: 220px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 100;
+        border-radius: 0 0 8px 8px;
+        padding: 0;
+    }
+
+    .dropdown:hover > .dropdown-content {
+        display: block;
+    }
+
+    .dropdown-content li {
+        position: relative;
+    }
+
+    .dropdown-content a {
+        font-size: 16px;
+        padding: 10px 18px;
+        color: #fff;
+        background: none;
+        border-radius: 0;
+    }
+
+    .dropdown-content a:hover {
+        background: #007bff;
+        color: #fff;
+    }
+
+    .dropdown-content .dropdown-subcontent {
+        left: 100%;
+        top: 0;
+        min-width: 200px;
+        border-radius: 0 8px 8px 8px;
+        background: #222;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .dropdown-content li:hover > .dropdown-subcontent {
+        display: block;
+    }
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em 0;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+    height: 1000px;
+    text-align: center;
+}
+
+.about-diamond {
+    background-color: ghostwhite;
+    color: #0a0a0a;
+    padding: 20px;
+}
+.services {
+    background-color: #7489ff;
+    color: #333;
+    padding-top: 20px; 
+    margin-top: 10px; 
+.vision {
+    background-color: #a3a3a3;
+    color: #333;
+    padding: 20px; 
+    margin-top: 20px;
+}
+
+h1, h2, p {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    font-family: 'Noto Serif', serif;
+    background-color: #111;
+    color: #fff;
+    padding: 2em 0;
+    width: 100%;
+    font-size: 20px;
+    box-sizing: border-box;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.footer-logo {
+    height: 120px;
+    width: auto;
+    margin-right: 32px;
+    margin-top: 0;
+    object-fit: contain;
+}
+
+.footer-text {
+    text-align: left;
+    color: #fff;
+}
+
