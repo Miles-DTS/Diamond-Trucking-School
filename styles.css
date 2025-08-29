@@ -444,7 +444,7 @@ body {
     border-radius: 2px;
 }
 
-/* Hero Section */
+/* Home Section */
 #home {
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
     position: relative;
@@ -467,7 +467,7 @@ body {
     50% { transform: translateY(-20px) rotate(180deg); }
 }
 
-.hero-content {
+.home-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
@@ -475,7 +475,7 @@ body {
     text-align: left;
 }
 
-.hero-title {
+.home-title {
     font-size: 4rem;
     font-weight: 700;
     margin-bottom: 1rem;
@@ -486,21 +486,21 @@ body {
     line-height: 1.2;
 }
 
-.hero-subtitle {
+.home-subtitle {
     font-size: 1.5rem;
     color: #00d4ff;
     margin-bottom: 1rem;
     font-weight: 500;
 }
 
-.hero-description {
+.home-description {
     font-size: 1.2rem;
     color: #ccc;
     margin-bottom: 2rem;
     line-height: 1.8;
 }
 
-.hero-stats {
+.home-stats {
     display: flex;
     gap: 2rem;
     margin-bottom: 2rem;
@@ -525,7 +525,7 @@ body {
     font-size: 0.9rem;
 }
 
-.hero-buttons {
+.home-buttons {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
@@ -580,7 +580,7 @@ body {
     transform: translateY(-3px);
 }
 
-.hero-visual {
+.home-visual {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1151,7 +1151,7 @@ body {
         padding: 1rem;
     }
     
-    .hero-content,
+    .home-content,
     .about-grid,
     .jobs-content,
     .contact-container {
@@ -1160,7 +1160,7 @@ body {
         text-align: center;
     }
     
-    .hero-title {
+    .home-title {
         font-size: 2.5rem;
     }
     
@@ -1168,7 +1168,7 @@ body {
         font-size: 2rem;
     }
     
-    .hero-stats {
+    .home-stats {
         justify-content: center;
     }
     
@@ -1190,11 +1190,11 @@ body {
         padding: 2rem 1rem;
     }
     
-    .hero-title {
+    .home-title {
         font-size: 2rem;
     }
     
-    .hero-buttons {
+    .home-buttons {
         flex-direction: column;
     }
     
